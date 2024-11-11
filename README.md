@@ -11,3 +11,4 @@ Use the [official slide deck](Containerlab-AC2-Workshop.pdf) to follow along wit
 3. [Startup config](15-startup/README.md)
 4. [VM-based nodes](20-vm/README.md)
 5. [Packet capture](40-packet-capture/README.md)
+6. [Bonus](https://github.com/srl-labs/srl-telemetry-lab)

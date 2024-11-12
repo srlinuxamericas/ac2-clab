@@ -36,7 +36,7 @@ topology:
       image: ghcr.io/nokia/srlinux
     ceos:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:4.33.0F
 
   links:
     - endpoints: [srl:e1-1, ceos:eth1]
@@ -69,7 +69,7 @@ docker pull ghcr.io/nokia/srlinux
 Import cEOS image and pay attention to the 2nd argument for the `docker import` command where you have to specify the image:
 
 ```bash
-docker import ~/images/cEOS64-lab-4.32.0F.tar.xz ceos:4.32.0F
+docker import ~/images/cEOS64-lab-4.33.0F.tar.xz ceos:4.33.0F
 ```
 
 Check the local image store again:
@@ -164,7 +164,7 @@ INFO[0000] Parsing & checking topology file: basic.clab.yml
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 | # |      Name       | Container ID |         Image         |     Kind      |  State  |  IPv4 Address  |     IPv6 Address     |
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
-| 1 | clab-basic-ceos | c279d892ea22 | ceos:4.32.0F          | arista_ceos   | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |
+| 1 | clab-basic-ceos | c279d892ea22 | ceos:4.33.0F          | arista_ceos   | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |
 | 2 | clab-basic-srl  | 7c46eb454f51 | ghcr.io/nokia/srlinux | nokia_srlinux | running | 172.20.20.3/24 | 2001:172:20:20::3/64 |
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 ```
@@ -178,7 +178,7 @@ INFO[0000] Parsing & checking topology file: basic.clab.yml
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 | # |      Name       | Container ID |         Image         |     Kind      |  State  |  IPv4 Address  |     IPv6 Address     |
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
-| 1 | clab-basic-ceos | c279d892ea22 | ceos:4.32.0F          | arista_ceos   | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |
+| 1 | clab-basic-ceos | c279d892ea22 | ceos:4.33.0F          | arista_ceos   | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |
 | 2 | clab-basic-srl  | 7c46eb454f51 | ghcr.io/nokia/srlinux | nokia_srlinux | running | 172.20.20.3/24 | 2001:172:20:20::3/64 |
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 ```
@@ -191,7 +191,7 @@ You can also list all running labs regardless of where their topology files are 
 +---+----------------+----------+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 | # |   Topo Path    | Lab Name |      Name       | Container ID |         Image         |     Kind      |  State  |  IPv4 Address  |     IPv6 Address     |
 +---+----------------+----------+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
-| 1 | basic.clab.yml | basic    | clab-basic-ceos | c279d892ea22 | ceos:4.32.0F          | arista_ceos   | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |
+| 1 | basic.clab.yml | basic    | clab-basic-ceos | c279d892ea22 | ceos:4.33.0F          | arista_ceos   | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |
 | 2 |                |          | clab-basic-srl  | 7c46eb454f51 | ghcr.io/nokia/srlinux | nokia_srlinux | running | 172.20.20.3/24 | 2001:172:20:20::3/64 |
 +---+----------------+----------+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 ```

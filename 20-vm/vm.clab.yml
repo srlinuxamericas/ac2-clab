@@ -1,0 +1,13 @@
+name: vm
+ 
+topology:
+  nodes:
+    sonic:
+      kind: sonic-vm
+      image: vrnetlab/sonic_sonic-vs:202405
+    srl:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
+
+  links:
+    - endpoints: ["sonic:eth1", "srl:e1-1"]

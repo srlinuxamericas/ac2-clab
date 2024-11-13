@@ -23,9 +23,23 @@ Once copied, we can enter in the `~/vrnetlab/sonic` image and build the containe
 cd ~/vrnetlab/sonic && make
 ```
 
-Note, that sonic image will run the VM during the container build time. This is to unpack the image once at build time, instead of doing it every time a container is started.
+The make process may take time depending on disk I/O performance of the VM/host.
 
-The resulting image will be tagged as `vrnetlab/sonic_sonic-vs:202405`.
+As a workaround, a SONiC docker image is provided under the `~images/` directory which can be directly imported into docker.
+
+```bash
+docker import ~/images/sonic-vs-docker.tar sonic_sonic-vs:202405
+```
+
+The resulting image will be tagged as `vrnetlab/sonic_sonic-vs:202405`. This can be verified using `docker images` command.
+
+```bash
+REPOSITORY                TAG       IMAGE ID       CREATED          SIZE
+vrnetlab/sonic_sonic-vs   202405    33b73b1dadc4   5 minutes ago    6.37GB
+ceos                      4.33.0F   927c8cd41224   53 minutes ago   2.46GB
+ghcr.io/nokia/srlinux     latest    eb2a823cd8ce   8 days ago       2.35GB
+hello-world               latest    d2c94e258dcb   18 months ago    13.3kB
+```
 
 ## Deploying the VM-based nodes lab
 
@@ -90,7 +104,7 @@ The SONiC device is pre-configured with the link IP address. This can be verifie
 show runningconfiguration interfaces
 ```
 
-For reference, here is the configuration for interface `Ethernet0`:
+For reference, here is the configuration for sonic interface `Ethernet0`:
 
 ```bash
 sudo config interface ip add Ethernet0 10.0.0.0/31

@@ -28,7 +28,7 @@ Expected output: `Hello from Docker!`
 Check that containerlab is installed successfully:
 
 ```bash
-sudo containerlab version
+containerlab version
 ```
 
 * Alternative Containerlab installation options are available [here](https://containerlab.dev/install/).

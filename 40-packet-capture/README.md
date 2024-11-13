@@ -19,15 +19,15 @@ It captures the traffic from SR OS (`clab-vm-sros`) port `eth1` (`1/1/1`) runnin
 Windows/WSL:
 
 ```bash
-ssh user@d1.srexperts.net \
-"ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
+ssh autoconuser@<X>.wrkshpz.net \
+"sudo ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
 /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 ```
 
 macOS:
 
 ```
-ssh user@d1.srexperts.net \
+ssh autoconuser@<X>.wrkshpz.net \
 "ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
 /Applications/Wireshark.app/Contents/MacOS/Wireshark  -k -i -
 ```

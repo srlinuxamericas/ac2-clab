@@ -33,12 +33,30 @@ Let's connect to the `clab-startup-srl` node and check the BGP peering status:
 ssh clab-startup-srl
 ```
 
-```
---{ running }--[  ]--
-A:srl# show network-instance default protocols bgp neighbor 192.168.1.2
+```srl
+show network-instance default protocols bgp neighbor 192.168.1.2
 ```
 
-You should see 1 route sent/received for the aforementioned BGP neighbor.
+You should see 1 route sent/received for the above BGP neighbor.
+
+```srl
+------------------------------------------------------------------------------------------------------------------------------------------------------
+BGP neighbor summary for network-instance "default"
+Flags: S static, D dynamic, L discovered by LLDP, B BFD enabled, - disabled, * slow
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
++-----------------+------------------------+-----------------+------+---------+--------------+--------------+------------+------------------------+
+|    Net-Inst     |          Peer          |      Group      | Flag | Peer-AS |    State     |    Uptime    |  AFI/SAFI  |     [Rx/Active/Tx]     |
+|                 |                        |                 |  s   |         |              |              |            |                        |
++=================+========================+=================+======+=========+==============+==============+============+========================+
+| default         | 192.168.1.2            | ibgp            | S    | 65001   | established  | 0d:0h:1m:56s | ipv4-      | [1/1/1]                |
+|                 |                        |                 |      |         |              |              | unicast    |                        |
++-----------------+------------------------+-----------------+------+---------+--------------+--------------+------------+------------------------+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary:
+1 configured neighbors, 1 configured sessions are established, 0 disabled peers
+0 dynamic peers
+```
 
 Now, let's connect to the `clab-startup-ceos` node and make sure that it can reach the loopback address announced by the `srl` node.
 

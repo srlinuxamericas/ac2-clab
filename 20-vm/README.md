@@ -34,7 +34,7 @@ With the sonic image built, we can proceed with the lab deployment. We will depl
 First, let's switch back to the lab directory:
 
 ```bash
-cd ~/ac1-workshop/20-vm
+cd ~/ac2-workshop/20-vm
 ```
 
 Now lets deploy the lab:

@@ -7,7 +7,7 @@ topology:
       startup-config: srl.cfg
     ceos:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:4.33.0F
       startup-config: ceos.cfg
 
   links:

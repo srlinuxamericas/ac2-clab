@@ -21,8 +21,9 @@ Check that docker is installed and running:
 
 ```bash
 docker run --rm hello-world
-# Expected output: Hello from Docker!
 ```
+
+Expected output: `Hello from Docker!`
 
 Check that containerlab is installed successfully:
 

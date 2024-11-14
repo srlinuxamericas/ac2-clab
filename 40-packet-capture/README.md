@@ -14,13 +14,13 @@ To achieve this, we will execute the `tcpdump` command on the remote host and pi
 
 It captures the traffic from SR Linux (`clab-vm-srl`) port `ethernet-1/1` running on your host and displaying the capture in the Wireshark.
 
-<small>The command is provided for WSL and Mac systems, assuming default Wireshark installation path. Replace `ID` with your VM number.</small>
-
 Login to `clab-vm-srl` and initiate a ping to `10.0.0.0`:
 
 ```srl
 ping 10.0.0.0 network-instance default
 ```
+
+<small>The command is provided for WSL and Mac systems, assuming default Wireshark installation path. Replace `X` with your VM number.</small>
 
 Windows/WSL:
 

@@ -10,11 +10,17 @@ Everything we are going to do in this exercise is explained in details in the [C
 
 The first way to capture the packets from a containerlab node running on a remote host that we are going to explore is called "remote capture". In this scenario a user has a network connectivity (ssh) to the host that runs containerlab topology and wishes to get the packet capture displayed in the Wireshark running locally.
 
-To achieve this, we will execute the `tcpdump` command on the remote host and pipe the output to the local Wireshark app. Here is a command that does it all for the host `d1` which is the instructors host.
+To achieve this, we will execute the `tcpdump` command on the remote host and pipe the output to the local Wireshark app. Here is a command that does it all.
 
-It captures the traffic from SR OS (`clab-vm-sros`) port `eth1` (`1/1/1`) running on `d1` host and displaying the capture in the Wireshark.
+It captures the traffic from SR Linux (`clab-vm-srl`) port `ethernet-1/1` running on your host and displaying the capture in the Wireshark.
 
-<small>The command is provided for WSL and Mac systems, assuming default Wireshark installation path</small>
+<small>The command is provided for WSL and Mac systems, assuming default Wireshark installation path. Replace `ID` with your VM number.</small>
+
+Login to `clab-vm-srl` and initiate a ping to `10.0.0.0`:
+
+```srl
+ping 10.0.0.0 network-instance default
+```
 
 Windows/WSL:
 
@@ -26,9 +32,9 @@ ssh autoconuser@<X>.wrkshpz.net \
 
 macOS:
 
-```
+```bash
 ssh autoconuser@<X>.wrkshpz.net \
-"ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
+"sudo ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
 /Applications/Wireshark.app/Contents/MacOS/Wireshark  -k -i -
 ```
 

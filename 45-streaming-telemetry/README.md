@@ -41,7 +41,7 @@ After you deployed the lab, run the `graph` command:
 sudo clab graph
 ```
 
-The local web server provided by containerlab will be welcoming you at `http://d<ID>.srexperts.net:50080` where `<ID>` is your ID. The web server will render the deployed topology in an interactive graph that you can sort vertically or horizontally.
+The local web server provided by containerlab will be welcoming you at `http://<ID>.wrkshpz.net:50080` where `<ID>` is your ID. The web server will render the deployed topology in an interactive graph that you can sort vertically or horizontally.
 
 The `group` options on the node level help you to order the lab nodes in the graph.
 
@@ -62,7 +62,3 @@ sudo clab graph --drawio --drawio-args "--theme grafana_dark"
 ```
 
 It has many neat options, so please go checkout the readme file at the projects' repo.
-
-### Mermaid
-
-And last graphing option is the mermaid graph that can be very handy when embedding the mermaid graphs in your markdown docs.

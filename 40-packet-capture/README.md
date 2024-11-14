@@ -6,9 +6,36 @@ Containerlab offers a simple way to capture the packets from any interface of an
 
 Everything we are going to do in this exercise is explained in details in the [Containerlab documentation](https://containerlab.dev/manual/wireshark/).
 
+## Local capture
+
+To capture the packets on the local host VM directly, run the below command on the VM host. This captures packets on the SR Linux interface `ethernet-1/1 `.
+
+```bash
+sudo ip netns exec clab-vm-srl tcpdump -nni e1-1
+```
+
+The output is displayed directly on the screen after the capture is stopped using CTRL+c.
+
+```bash
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on e1-1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C17:17:45.763237 IP 10.0.0.0 > 10.0.0.1: ICMP echo request, id 43538, seq 8, length 64
+17:17:45.764509 IP 10.0.0.1 > 10.0.0.0: ICMP echo reply, id 43538, seq 8, length 64
+17:17:45.953099 LLDP, length 243: sonic
+17:17:46.764454 IP 10.0.0.0 > 10.0.0.1: ICMP echo request, id 43538, seq 9, length 64
+17:17:46.765547 IP 10.0.0.1 > 10.0.0.0: ICMP echo reply, id 43538, seq 9, length 64
+17:17:47.766626 IP 10.0.0.0 > 10.0.0.1: ICMP echo request, id 43538, seq 10, length 64
+17:17:47.767523 IP 10.0.0.1 > 10.0.0.0: ICMP echo reply, id 43538, seq 10, length 64
+
+7 packets captured
+7 packets received by filter
+0 packets dropped by kernel
+```
+
+
 ## Remote capture
 
-The first way to capture the packets from a containerlab node running on a remote host that we are going to explore is called "remote capture". In this scenario a user has a network connectivity (ssh) to the host that runs containerlab topology and wishes to get the packet capture displayed in the Wireshark running locally.
+To capture the packets from a containerlab node running on a remote host that we are going to explore is called "remote capture". In this scenario a user has a network connectivity (ssh) to the host that runs containerlab topology and wishes to get the packet capture displayed in the Wireshark running locally.
 
 To achieve this, we will execute the `tcpdump` command on the remote host and pipe the output to the local Wireshark app. Here is a command that does it all.
 

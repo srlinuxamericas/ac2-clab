@@ -58,16 +58,16 @@ Summary:
 0 dynamic peers
 ```
 
-Now, let's connect to the `clab-startup-ceos` node and make sure that it can reach the loopback address announced by the `srl` node.
+Now, let's connect to the `clab-startup-srl` node and make sure that it can reach the loopback address announced by the `ceos` node.
 
 ```bash
-ssh clab-startup-ceos
+ssh clab-startup-srl
 ```
 
-When in the EOS shell, issue a ping towards the `srl` node's loopback address:
+When in the SRL CLI, issue a ping towards the `ceos` node's loopback address:
 
 ```
-ping 10.10.10.1
+ping 10.10.10.2
 ```
 
 You should see a successful ping response.

@@ -25,10 +25,10 @@ cd ~/vrnetlab/sonic && make
 
 The make process may take time depending on disk I/O performance of the VM/host.
 
-As a workaround, a SONiC docker image is provided under the `~images/` directory which can be directly imported into docker.
+As a workaround, a SONiC docker image is provided under the `~images/` directory which can be directly loaded into docker.
 
 ```bash
-docker import ~/images/sonic-vs-docker.tar sonic_sonic-vs:202405
+docker load -i ~/images/sonic-vs-docker.tar
 ```
 
 The resulting image will be tagged as `vrnetlab/sonic_sonic-vs:202405`. This can be verified using `docker images` command.

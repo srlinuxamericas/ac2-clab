@@ -4,8 +4,6 @@ Welcome to the Containerlab workshop at Autocon2.
 
 Below is a list of workshop modules. Each module is a self-contained guide that can be followed independently, but it is recommended to go through them in order if you are new to Containerlab.
 
-Use the [official slide deck](Containerlab-AC2-Workshop.pdf) to follow along with the workshop.
-
 Please contact [**Reda Laichi**](https://www.linkedin.com/in/reda-l-5b28292) or [**Saju Salahudeen**](https://www.linkedin.com/in/saju-salahudeen) if you have any questions after the workshop.
 
 1. [Containerlab Installation](05-install/README.md) guide

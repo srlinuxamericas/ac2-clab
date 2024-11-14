@@ -47,7 +47,7 @@ Edgeshark installation consists of two parts:
 1. A service that runs on the host that runs containerlab topologies
 2. A wireshark capture plugin that runs next to the Wireshark on a user's PC
 
-To install the service, past the installer command that uses docker compose to deploy the service:
+To install the service, paste the installer command that uses docker compose to deploy the service:
 
 ```bash
 curl -sL \
@@ -94,6 +94,6 @@ The command above will open two Finder windows, one with the `cshargextcap` bina
 
 To access the Edgeshark UI, open a browser and navigate to the following URL (substitute the hostname with your assigned VM):
 
-<http://d{ID}.srexperts.net:5001>
+<http://{ID}.wrkshpz.net:5001>
 
 Note, the http schema is important, since https is not enabled.

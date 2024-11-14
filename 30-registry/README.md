@@ -18,13 +18,15 @@ The Harbor registry offers a neat Web UI to browse the registry contents, manage
 
 <https://registry.wrkshpz.net>
 
-using the `admin` user and the password available in your workshop handout.
+using the `autoconuser` user and the password available in your workshop handout.
 
-When logged in as `admin` you can created users, repositories, browse the registry contents and many more. Managing the harbor registry is out of the scope of this workshop.
+Managing the harbor registry is out of the scope of this workshop.
 
 ## Pushing images to the registry
 
-We will push one of the images that we've built in the previous section to the registry effectively saving it and making it available and reusable to other users who have access to this registry.
+***FOR REFERENCE ONLY***
+
+This section is for reference only and you are not required to do this on your VM.
 
 ### 1 Logging in to the registry
 
@@ -50,16 +52,16 @@ docker images
 On your system you will see a list of images, among which you will see:
 
 ```
-REPOSITORY              TAG         IMAGE ID       CREATED       SIZE
-vrnetlab/nokia_sros     24.7.R1     d45128fc2914   2 hours ago   889MB
+REPOSITORY                      TAG          IMAGE ID       CREATED         SIZE
+vrnetlab/sonic_sonic-vs         202405       9b419b0a2acf   2 weeks ago     6.37GB
 ```
 
 This is the image that we built before and that we want to push to the registry so that next time we want to use it we won't have to build it again.
 
 The image name consists of two parts:
 
-- `vrnetlab/nokia_sros` - the repository name
-- `24.7.R1` - the tag
+- `vrnetlab/sonic_sonic-vs` - the repository name
+- `202405` - the tag
 
 Catenating these two parts together we get the full name of the image that we want to push to the registry.
 
@@ -69,17 +71,14 @@ Now that we know the name of the image that we want to push to the registry, we 
 
 Using the skopeo tool - <https://github.com/containers/skopeo> - we can push the image to the registry in one go. The command to use has the following format:
 
+```bash
+skopeo copy docker://<local image name>:<tag> docker://<registry>/<repository>:<tag>
 ```
-skopeo copy docker-deamon://<local image name> docker://<registry>/<repository>:<tag>
-```
-
-Since everyone would want to push their own image to the registry we will need to append a user id to the tag name so that you won't overwrite each other's images. Like the below command pushes the image to the user with ID=1:
 
 ```bash
-# note the appended -1 at the end of the tag
 skopeo copy \
-docker-daemon:vrnetlab/nokia_sros:24.7.R1 \
-docker://registry.wrkshpz.net/library/nokia_sros:24.7.R1-1
+docker://vrnetlab/sonic_sonic-vs:202405 \
+docker://registry.wrkshpz.net/library/sonic-vs:202405
 ```
 
 ## Listing images from the registry
@@ -93,7 +92,7 @@ If you want to get the list of available repositories/tags in the registry, you 
 Listing available repositories:
 
 ```bash
- curl -s -u 'admin:nokia2024' https://registry.wrkshpz.net/v2/_catalog | jq
+ curl -s -u 'autoconuser:nokia2024' https://registry.wrkshpz.net/v2/_catalog | jq
 {
   "repositories": [
     "admin/nokia_srl",
@@ -105,13 +104,7 @@ Listing available repositories:
 Listing available tags for a given repository:
 
 ```bash
-skopeo list-tags docker://registry.wrkshpz.net/library/nokia_srl
-{
-    "Repository": "registry.wrkshpz.net/library/nokia_srl",
-    "Tags": [
-        "24.7.1"
-    ]
-}
+skopeo list-tags docker://registry.wrkshpz.net/autocon2/nokia_srlinux --tls-verify=false
 ```
 
 ## Using images from the registry

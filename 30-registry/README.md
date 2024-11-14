@@ -16,7 +16,7 @@ The registry has been already deployed in the workshop environment, but it is qu
 
 The Harbor registry offers a neat Web UI to browse the registry contents, manage users and tune access control. You can log in to the registry UI like this:
 
-<https://registry-d16.srexperts.net>
+<https://registry.wrkshpz.net>
 
 using the `admin` user and the password available in your workshop handout.
 
@@ -31,9 +31,12 @@ We will push one of the images that we've built in the previous section to the r
 To be able to push and pull the images from the workshop's registry, you need to login to the registry.
 
 ```bash
+docker login registry.wrkshpz.net
+```
+
+```
 # username: admin
 # password: as per your workshop handout
-docker login registry-d16.srexperts.net
 ```
 
 ### 2 Listing local images
@@ -76,7 +79,7 @@ Since everyone would want to push their own image to the registry we will need t
 # note the appended -1 at the end of the tag
 skopeo copy \
 docker-daemon:vrnetlab/nokia_sros:24.7.R1 \
-docker://registry-d16.srexperts.net/library/nokia_sros:24.7.R1-1
+docker://registry.wrkshpz.net/library/nokia_sros:24.7.R1-1
 ```
 
 ## Listing images from the registry
@@ -90,11 +93,11 @@ If you want to get the list of available repositories/tags in the registry, you 
 Listing available repositories:
 
 ```bash
- curl -s -u 'admin:d16ClabW$' https://registry-d16.srexperts.net/v2/_catalog | jq
+ curl -s -u 'admin:nokia2024' https://registry.wrkshpz.net/v2/_catalog | jq
 {
   "repositories": [
-    "admin/nokia_sros",
-    "library/nokia_sros"
+    "admin/nokia_srl",
+    "library/nokia_srl"
   ]
 }
 ```
@@ -102,11 +105,11 @@ Listing available repositories:
 Listing available tags for a given repository:
 
 ```bash
-skopeo list-tags docker://registry-d16.srexperts.net/library/nokia_sros
+skopeo list-tags docker://registry.wrkshpz.net/library/nokia_srl
 {
-    "Repository": "registry-d16.srexperts.net/library/nokia_sros",
+    "Repository": "registry.wrkshpz.net/library/nokia_srl",
     "Tags": [
-        "24.7.R1-1"
+        "24.7.1"
     ]
 }
 ```
@@ -117,20 +120,33 @@ The whole point of pushing the image to the registry is to be able to use it in 
 
 ```diff
 name: vm
+ 
 topology:
   nodes:
-    sros:
-      kind: nokia_sros
--     image: vrnetlab/nokia_sros:24.7.R1
-+     image: registry-d16.srexperts.net/library/nokia_sros:24.7.R1-1
-      license: ~/images/sros-24.lic
-
-    c8000v:
-      kind: cisco_c8000v
-      image: vrnetlab/cisco_c8000v:17.11.01a
+    sonic:
+      kind: sonic-vm
+      image: vrnetlab/sonic_sonic-vs:202405
+    srl:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
 
   links:
-    - endpoints: [sros:eth1, c8000v:eth1]
+    - endpoints: ["sonic:eth1", "srl:e1-1"]
+
+name: vm
+topology:
+  nodes:
+    sonic:
+      kind: sonic-vm
+      image: vrnetlab/sonic_sonic-vs:202405
+
+    sros:
+      kind: nokia_srlinux
+-     image: ghcr.io/nokia/srlinux
++     image: registry.wrkshpz.net/library/nokia_srl:24.7.1
+
+  links:
+    - endpoints: ["sonic:eth1", "srl:e1-1"]
 ```
 
 Not only this gives us an easy way to share images with others, but also it enables stronger reproducibility of the lab, as the users of our lab would use exactly the same image that we built.

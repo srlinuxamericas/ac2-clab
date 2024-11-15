@@ -11,7 +11,7 @@ cd ~/vrnetlab
 
 ## Building SONiC container image
 
-SONiC vs image (downloaded from [sonic.software](https://sonic.software/)) is located at `~/images/sonic-vs-202405.qcow2` and should be copied to the `~/vrnetlab/sonic/` directory before building the container image.
+SONiC vs image (downloaded from [sonic.software](https://sonic.software/)) is located at `~/images/sonic-vs-202405.qcow2` on your VM and should be copied to the `~/vrnetlab/sonic/` directory before building the container image.
 
 ```bash
 cp ~/images/sonic-vs-202405.qcow2 ~/vrnetlab/sonic/
@@ -19,13 +19,13 @@ cp ~/images/sonic-vs-202405.qcow2 ~/vrnetlab/sonic/
 
 Once copied, we can enter in the `~/vrnetlab/sonic` image and build the container image:
 
+**NOTE: The make process may take time depending on disk I/O performance of the VM/host. For the hands on workshop, it is recommended to use the ready to go SONIC docker image `sonic-vs-docker.tar`.**
+
 ```bash
 cd ~/vrnetlab/sonic && make
 ```
 
-The make process may take time depending on disk I/O performance of the VM/host.
-
-As a workaround, a SONiC docker image is provided under the `~images/` directory which can be directly loaded into docker.
+A SONiC docker image is provided under the `~images/` directory which can be directly loaded into docker.
 
 ```bash
 docker load -i ~/images/sonic-vs-docker.tar
@@ -43,7 +43,7 @@ hello-world               latest    d2c94e258dcb   18 months ago    13.3kB
 
 ## Deploying the VM-based nodes lab
 
-With the sonic image built, we can proceed with the lab deployment. We will deploy a lab with SONiC and SR Linux.
+With the sonic image built, we can proceed with the lab deployment. We will deploy a lab with SONiC and SR Linux to show that Containerlab can have a VM based docker node and a native docker node in the same lab.
 
 First, let's switch back to the lab directory:
 
@@ -86,13 +86,13 @@ To connect to SONiC node:
 ssh admin@clab-vm-sonic
 ```
 
+Refer to the password in your card.
+
 To connect to SR Linux node:
 
 ```bash
 ssh clab-vm-srl
 ```
-
-Refer to the username/password on your postcard.
 
 ## Configuring the nodes
 
@@ -134,3 +134,5 @@ PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
 rtt min/avg/max/mdev = 1.965/2.378/3.168/0.558 ms
 ```
+
+We have now completed the section on bring VM based nodes into Containerlab.

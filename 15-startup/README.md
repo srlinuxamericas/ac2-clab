@@ -10,7 +10,7 @@ To enter the lab directory, run the following command from anywhere in your term
 cd ~/ac2-clab/15-startup/
 ```
 
-We start by deploying a lab defined in the `startup.clab.yml` topology file. The lab consists of two nodes: `srl` (Nokia SR Linux) and `ceos` (Arista cEOS). Both nodes are configured with a startup configuration file that resides in the same directory as the topology file.
+We start by deploying a lab defined in the [startup.clab.yml](startup.clab.yml) topology file. The lab consists of two nodes: `srl` (Nokia SR Linux) and `ceos` (Arista cEOS). Both nodes are configured with a startup configuration file that resides in the same directory as the topology file.
 
 We will use the shortened syntax when deploying the lab; less typing and more fun!
 
@@ -58,11 +58,7 @@ Summary:
 0 dynamic peers
 ```
 
-Now, let's connect to the `clab-startup-srl` node and make sure that it can reach the loopback address announced by the `ceos` node.
-
-```bash
-ssh clab-startup-srl
-```
+Now, let's make sure that it can reach the loopback address announced by the `ceos` node.
 
 When in the SRL CLI, issue a ping towards the `ceos` node's loopback address:
 

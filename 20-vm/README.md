@@ -19,16 +19,14 @@ cp ~/images/sonic-vs-202405.qcow2 ~/vrnetlab/sonic/
 
 Once copied, we can enter in the `~/vrnetlab/sonic` image and build the container image:
 
-**NOTE: The make process may take time depending on disk I/O performance of the VM/host. For the hands on workshop, it is recommended to skip the make the process and use the ready to go SONIC docker image `sonic-vs-docker.tar`.**
-
 ```bash
 cd ~/vrnetlab/sonic && make
 ```
 
-A SONiC docker image is provided under the `~images/` directory which can be directly loaded into docker.
+Expected output:
 
 ```bash
-docker load -i ~/images/sonic-vs-docker.tar
+
 ```
 
 The resulting image will be tagged as `vrnetlab/sonic_sonic-vs:202405`. This can be verified using `docker images` command.

@@ -127,6 +127,13 @@ topology:
     - endpoints: ["sonic:eth1", "srl:e1-1"]
 ```
 
+Deploy the lab using:
+
+```bash
+cd ~/ac2-clab/20-vm
+sudo clab dep -t 20-vm.clab.yml
+```
+
 Expected output:
 
 ```bash

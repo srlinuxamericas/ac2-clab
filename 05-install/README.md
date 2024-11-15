@@ -17,7 +17,7 @@ sudo bash -s "all"
 
 The automation script adds the `docker` group to your `user`, in order for these changes to take effect, log out from the current session and log back in.
 
-Check that docker is installed and running:
+After logout and login again, check that docker is installed and running:
 
 ```bash
 docker run --rm hello-world

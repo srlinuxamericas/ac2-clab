@@ -4,7 +4,7 @@ This workshop section introduces you to containerlab basics - topology file, ima
 
 ## Repository
 
-Clone the repository to your workshop VM:
+Clone this repository to your workshop VM:
 
 ```bash
 cd ~ && git clone https://github.com/srlinuxamericas/ac2-clab.git \
@@ -46,7 +46,7 @@ topology:
 Try to deploy the lab:
 
 ```bash
-sudo containerlab deploy -t basic.clab.yml
+sudo clab dep -t basic.clab.yml
 ```
 
 Deployment fails, why?
@@ -59,13 +59,13 @@ Check what images are available on the system:
 docker images
 ```
 
-Pull SR Linux container image:
+Pull SR Linux container image available for free:
 
 ```bash
 docker pull ghcr.io/nokia/srlinux
 ```
 
-Import cEOS image and pay attention to the 2nd argument for the `docker import` command where you have to specify the image:
+Import cEOS image localled stored on your VM and pay attention to the 2nd argument for the `docker import` command where you have to specify the image:
 
 ```bash
 docker import ~/images/cEOS64-lab-4.33.0F.tar ceos:4.33.0F
@@ -97,10 +97,8 @@ hello-world             latest    d2c94e258dcb   18 months ago    13.3kB
 Now that the images are available, try to deploy the lab again:
 
 ```bash
-sudo containerlab deploy -t basic.clab.yml
+sudo clab dep -t basic.clab.yml
 ```
-
-Note, you can use a shortcut version of the same command - `sudo clab dep -t basic.clab.yml`.
 
 The deployment should succeed and a table will be displayed with the list of nodes and their management IPs.
 
@@ -121,7 +119,7 @@ Connect to the Nokia SR Linux node using the container name:
 ssh clab-basic-srl
 ```
 
-Connect to cEOS node using its IP address:
+Connect to cEOS node using its hostname or IP address. Refer to the card for password.
 
 ```bash
 ssh admin@172.20.20.2
@@ -133,14 +131,6 @@ Containerlab creates `/etc/hosts` entries for each deployed lab so that you can 
 
 ```bash
 cat /etc/hosts
-```
-
-## Containerlab ssh config automation
-
-Containerlab creates ssh config entries in `/etc/ssh/ssh_config.d/clab-<lab-name>.conf` file to provide easy access to the nodes. Check the entries:
-
-```bash
-cat /etc/ssh/ssh_config.d/clab-basic.conf
 ```
 
 ## Checking network connectivity
@@ -181,7 +171,7 @@ A:srl# show /system lldp neighbor interface ethernet-1/1
 When you are in the directory that contains the lab file, you can list the nodes of that lab simply by running:
 
 ```bash
-sudo containerlab inspect
+sudo clab inspect
 ```
 
 Expected output:
@@ -199,7 +189,7 @@ INFO[0000] Parsing & checking topology file: basic.clab.yml
 If the topology file is located in a different directory, you can specify the path to the topology file:
 
 ```bash
-sudo containerlab inspect -t ~/ac2-clab/10-basics/
+sudo clab inspect -t ~/ac2-clab/10-basics/
 INFO[0000] Parsing & checking topology file: basic.clab.yml
 +---+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 | # |      Name       | Container ID |         Image         |     Kind      |  State  |  IPv4 Address  |     IPv6 Address     |
@@ -212,7 +202,7 @@ INFO[0000] Parsing & checking topology file: basic.clab.yml
 You can also list all running labs regardless of where their topology files are located:
 
 ```bash
-sudo containerlab inspect --all
+sudo clab inspect --all
 +---+----------------+----------+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
 | # |   Topo Path    | Lab Name |      Name       | Container ID |         Image         |     Kind      |  State  |  IPv4 Address  |     IPv6 Address     |
 +---+----------------+----------+-----------------+--------------+-----------------------+---------------+---------+----------------+----------------------+
@@ -249,7 +239,7 @@ tree -L 3 clab-basic/
 When you are done with the lab, you can destroy it:
 
 ```bash
-sudo containerlab destroy -t basic.clab.yml
+sudo clab destroy -t basic.clab.yml
 ```
 
 You have now finished the basics lab exercise!

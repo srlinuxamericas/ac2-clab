@@ -6,12 +6,18 @@ Containerlab offers a simple way to capture the packets from any interface of an
 
 Everything we are going to do in this exercise is explained in details in the [Containerlab documentation](https://containerlab.dev/manual/wireshark/).
 
+**Note: We will be using the [startup lab](../15-startup) for this section. If this is already destroyed, please re-deploy it before continuing. Once the lab is deployed, login to the SR Linux node and start a ping using**
+
+```srl
+ping 10.10.10.2 network-instance default
+```
+
 ## Local capture
 
 To capture the packets on the local host VM directly, run the below command on the VM host. This captures packets on the SR Linux interface `ethernet-1/1 `.
 
 ```bash
-sudo ip netns exec clab-vm-srl tcpdump -nni e1-1
+sudo ip netns exec clab-startup-srl tcpdump -nni e1-1
 ```
 
 The output is displayed directly on the screen after the capture is stopped using CTRL+c.
@@ -19,16 +25,18 @@ The output is displayed directly on the screen after the capture is stopped usin
 ```bash
 tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
 listening on e1-1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
-^C17:17:45.763237 IP 10.0.0.0 > 10.0.0.1: ICMP echo request, id 43538, seq 8, length 64
-17:17:45.764509 IP 10.0.0.1 > 10.0.0.0: ICMP echo reply, id 43538, seq 8, length 64
-17:17:45.953099 LLDP, length 243: sonic
-17:17:46.764454 IP 10.0.0.0 > 10.0.0.1: ICMP echo request, id 43538, seq 9, length 64
-17:17:46.765547 IP 10.0.0.1 > 10.0.0.0: ICMP echo reply, id 43538, seq 9, length 64
-17:17:47.766626 IP 10.0.0.0 > 10.0.0.1: ICMP echo request, id 43538, seq 10, length 64
-17:17:47.767523 IP 10.0.0.1 > 10.0.0.0: ICMP echo reply, id 43538, seq 10, length 64
+^C21:41:34.519518 IP 192.168.1.2.53896 > 192.168.1.1.179: Flags [P.], seq 585107004:585107023, ack 625985616, win 502, options [nop,nop,TS val 3540017866 ecr 2310269600], length 19: BGP
+21:41:34.521095 IP 192.168.1.1.179 > 192.168.1.2.53896: Flags [.], ack 19, win 31290, options [nop,nop,TS val 2310287756 ecr 3540017866], length 0
+21:41:36.022378 IP 10.10.10.1 > 10.10.10.2: ICMP echo request, id 25939, seq 1, length 64
+21:41:36.022410 IP 10.10.10.2 > 10.10.10.1: ICMP echo reply, id 25939, seq 1, length 64
+21:41:37.024267 IP 10.10.10.1 > 10.10.10.2: ICMP echo request, id 25939, seq 2, length 64
+21:41:37.024305 IP 10.10.10.2 > 10.10.10.1: ICMP echo reply, id 25939, seq 2, length 64
+21:41:37.486390 LLDP, length 146: srl
+21:41:38.026241 IP 10.10.10.1 > 10.10.10.2: ICMP echo request, id 25939, seq 3, length 64
+21:41:38.026275 IP 10.10.10.2 > 10.10.10.1: ICMP echo reply, id 25939, seq 3, length 64
 
-7 packets captured
-7 packets received by filter
+9 packets captured
+9 packets received by filter
 0 packets dropped by kernel
 ```
 
@@ -39,12 +47,12 @@ To capture the packets from a containerlab node running on a remote host that we
 
 To achieve this, we will execute the `tcpdump` command on the remote host and pipe the output to the local Wireshark app. Here is a command that does it all.
 
-It captures the traffic from SR Linux (`clab-vm-srl`) port `ethernet-1/1` running on your host and displaying the capture in the Wireshark.
+It captures the traffic from SR Linux (`clab-startup-srl`) port `ethernet-1/1` running on your host and displaying the capture in the Wireshark.
 
-Login to `clab-vm-srl` and initiate a ping to `10.0.0.0`:
+Login to `clab-startup-srl` and initiate a ping to `10.10.10.2`:
 
 ```srl
-ping 10.0.0.0 network-instance default
+ping 10.10.10.2 network-instance default
 ```
 
 <small>The command is provided for WSL and Mac systems, assuming default Wireshark installation path. Replace `X` with your VM number.</small>
@@ -53,7 +61,7 @@ Windows/WSL:
 
 ```bash
 ssh autoconuser@<X>.wrkshpz.net \
-"sudo ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
+"sudo ip netns exec clab-startup-srl tcpdump -U -nni eth1 -w -" | \
 /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 ```
 
@@ -61,7 +69,7 @@ macOS:
 
 ```bash
 ssh autoconuser@<X>.wrkshpz.net \
-"sudo ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
+"sudo ip netns exec clab-startup-srl tcpdump -U -nni eth1 -w -" | \
 /Applications/Wireshark.app/Contents/MacOS/Wireshark  -k -i -
 ```
 

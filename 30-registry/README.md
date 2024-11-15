@@ -80,7 +80,7 @@ docker tag vrnetlab/sonic_sonic-vs:202405 registry.wrkshpz.net/autocon2/sonic-vs
 Now we can push the image to the registry.
 
 ```bash
-docker push registry.wrkshpz.net/autocon2/sonic-vs:latest
+docker push registry.wrkshpz.net/autocon2/sonic-vs:202405
 ```
 
 Expected output:

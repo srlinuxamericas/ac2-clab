@@ -23,12 +23,6 @@ Once copied, we can enter in the `~/vrnetlab/sonic` image and build the containe
 cd ~/vrnetlab/sonic && make
 ```
 
-Expected output:
-
-```bash
-
-```
-
 The resulting image will be tagged as `vrnetlab/sonic_sonic-vs:202405`. This can be verified using `docker images` command.
 
 ```bash

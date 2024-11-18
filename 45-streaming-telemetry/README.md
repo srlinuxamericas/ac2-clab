@@ -38,6 +38,7 @@ To help you with visualizing the topology, containerlab provides a few graphing 
 After you deployed the lab, run the `graph` command:
 
 ```
+cd ~/srl-telemetry-lab
 sudo clab graph
 ```
 

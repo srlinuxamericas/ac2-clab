@@ -131,7 +131,7 @@ docker image rm -f b91919a90761
 
 Run the `docker images` command again to verify that the sonic image is removed.
 
-Next, we can modify the `20-vm.clab.yml` file to make use of the sonic image in the registry:
+Next, we can modify the `vm.clab.yml` file to make use of the sonic image in the registry:
 
 ```bash
 name: vm
@@ -153,7 +153,7 @@ Deploy the lab using:
 
 ```bash
 cd ~/ac2-clab/20-vm
-sudo clab dep -t 20-vm.clab.yml
+sudo clab dep -t vm.clab.yml
 ```
 
 Expected output:

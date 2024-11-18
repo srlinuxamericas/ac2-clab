@@ -112,6 +112,7 @@ set / interface ethernet-1/1 subinterface 0 ipv4 address 10.0.0.1/31
 set / network-instance default type default
 set / network-instance default interface ethernet-1/1.0
 ```
+Once configured issue the `commit now` command to make sure the candidate config is merged into running.
 
 Now we configured the two systems to be able to communicate with each other. Perform a ping from SONiC to SR Linux:
 

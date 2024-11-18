@@ -139,7 +139,7 @@ name: vm
 topology:
   nodes:
     sonic:
-      kind: sonic-vm
+      kind: sonic-vs
       image: registry.wrkshpz.net/autocon2/sonic-vs:202405
     srl:
       kind: nokia_srlinux

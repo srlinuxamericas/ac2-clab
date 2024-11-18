@@ -18,7 +18,7 @@ The Harbor registry offers a neat Web UI to browse the registry contents, manage
 
 <https://registry.wrkshpz.net>
 
-using the `autoconuser` user and the password available in your workshop handout.
+using the `autoconuser` user and the password `Nokia2024!`.
 
 Managing the harbor registry is out of the scope of this workshop.
 

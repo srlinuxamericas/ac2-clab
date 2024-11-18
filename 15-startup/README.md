@@ -60,7 +60,7 @@ Summary:
 
 Now, let's make sure that it can reach the loopback address announced by the `ceos` node.
 
-When in the SRL CLI, issue a ping towards the `ceos` node's loopback address:
+When in the SRL CLI, issue a ping towards the `ceos` node's loopback address, we will need to use the default network interface instead of the mgmt:
 
 ```
 ping network-instance default 10.10.10.2

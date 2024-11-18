@@ -61,7 +61,7 @@ Windows/WSL:
 
 ```bash
 ssh autoconuser@<X>.wrkshpz.net \
-"sudo ip netns exec clab-startup-srl tcpdump -U -nni eth1 -w -" | \
+"sudo ip netns exec clab-startup-srl tcpdump -U -nni e1-1 -w -" | \
 /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 ```
 
@@ -69,7 +69,7 @@ macOS:
 
 ```bash
 ssh autoconuser@<X>.wrkshpz.net \
-"sudo ip netns exec clab-startup-srl tcpdump -U -nni eth1 -w -" | \
+"sudo ip netns exec clab-startup-srl tcpdump -U -nni e1-1 -w -" | \
 /Applications/Wireshark.app/Contents/MacOS/Wireshark  -k -i -
 ```
 
